@@ -1,0 +1,35 @@
+Initial length - N
+first iteration - N/2
+second iteration - N/ 2 ^ 2 = N/4
+third iteration - N/2 ^ 3 = N/ 8
+.....
+iteration K - N/2 ^ K
+since the final length of the arraay is 1 we can find the 
+N/2 ^ K = 1
+rearranging  the terms
+N = 2 ^ k
+Taking the logarithm
+k = log N
+where log refers to log to the base 2 therefore our algoritm has the timee complexity 0(log N)
+
+Generic Binary Search
+1. come up with a condition to determine whetehre the answer lies before, after or at a given position
+2. Retrieve the midpoint and the middle element of the list
+3. If it is the answwer return the middle position as the answer
+4. If answer lies befoore it, repeat the search with the firsst half of the list
+5. If the answer lies after it, repeast the search with the ssecond half of the list.
+
+def binary_search(lo, hi, condition, target):
+    while lo <= hi:
+	mid = (lo + hi) // 2
+	result = condition[mid]
+	if result == target:
+	    return mid
+	if result <  target:
+	    hi = mid - 1
+	else:
+	    lo = mid + 1
+    return -1
+
+
+the worst-case complexity or running tiime of binary search is 0(log N)
