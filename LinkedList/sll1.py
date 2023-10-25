@@ -124,6 +124,24 @@ class LinkedList:
             temp.value = value
             return True
         return False
+    
+    def popFirst(self):
+        # delete the first element in the node
+        # and returns the element
+        if self.head is None:
+            return None
+        current = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            current.next = None
+            self.length -= 1
+        return current.value
+    
+    def popLast(self):
+        popped_node = self.tail
 
 new_linked_list = LinkedList()
 new_linked_list.append(10)
@@ -132,15 +150,17 @@ new_linked_list.append(30)
 new_linked_list.add_to_beginning_node(5)
 
 list1 = LinkedList()
-list1.add_to_beginning_node(1)
-list1.add_to_beginning_node(2)
+#list1.add_to_beginning_node(1)
+#list1.add_to_beginning_node(2)
 list1.add_to_beginning_node(3)
-list1.insert_at_idx(4, 0)
+#list1.insert_at_idx(4, 0)
 #print(list1)
 #list1.traverse()
 #print(list1.search_node_idx(4))
 # get node
 #print(list1.get(-1).value)
-print(list1)
+#print(list1)
 list1.set_value(0, 5)
-print(list1)
+#print(list1)
+print(list1.popFirst())
+print(list1.tail.value)
