@@ -29,9 +29,9 @@ class LinkedList:
             self.head = new_node
             self.tail = new_node
         else:
-            self.tail = new_node
-            self.tail.next = self.head
-            self.head = self.tail
+            temp_node = new_node
+            temp_node.next = self.head
+            self.head = temp_node
         self.length +=1
 
     def insert_at_idx(self, value, idx):
@@ -141,26 +141,27 @@ class LinkedList:
         return current.value
     
     def popLast(self):
-        popped_node = self.tail
+        # pop last element in a linked list
+        if self.head is None:
+            return None
+        
+        if self.head == 1:
+            self.head = self.tail = None
+
+        else:
+            temp_node = self.head
+            popped_node = self.tail
+            while temp_node.next is not self.tail:
+                temp_node = temp_node.next
+
+            self.tail = temp_node
+            temp_node = None
+            self.length -= 1
+            return popped_node.value
 
 new_linked_list = LinkedList()
-new_linked_list.append(10)
-new_linked_list.append(20)
+#new_linked_list.append(10)
+#new_linked_list.append(20)
 new_linked_list.append(30)
-new_linked_list.add_to_beginning_node(5)
-
-list1 = LinkedList()
-#list1.add_to_beginning_node(1)
-#list1.add_to_beginning_node(2)
-list1.add_to_beginning_node(3)
-#list1.insert_at_idx(4, 0)
-#print(list1)
-#list1.traverse()
-#print(list1.search_node_idx(4))
-# get node
-#print(list1.get(-1).value)
-#print(list1)
-list1.set_value(0, 5)
-#print(list1)
-print(list1.popFirst())
-print(list1.tail.value)
+print(new_linked_list)
+print(new_linked_list.popLast())
