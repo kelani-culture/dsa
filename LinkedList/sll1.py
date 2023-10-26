@@ -159,9 +159,52 @@ class LinkedList:
             self.length -= 1
             return popped_node.value
 
+    def remove_node(self, index):
+        if self.head is None:
+            return None
+
+        if index < 0 or index >= self.length:
+            return None
+        # check if node is a single element
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        # check if index is at the beginning
+        if index == 0:
+            removed = self.head
+            self.head = self.head.next
+            removed = None
+        # check if index is at end
+        elif index == self.length - 1:
+            removed_node = self.tail
+            temp = self.head
+            while temp.next is not self.tail:
+                temp = temp.next
+            self.tail = temp
+            self.tail.next = None
+            removed_node = None
+        # check if index is inbetween
+        else:
+            temp = self.head
+            for _ in range(index-1):
+                temp = temp.next
+            removed_node = temp.next
+            temp.next = temp.next.next
+            removed_node = None
+        self.length -= 1
+
+    def delete(self):
+        # delete everyting in a linked list
+        self.head = None
+        self.tail = None
+        self.length = 0
+
 new_linked_list = LinkedList()
 #new_linked_list.append(10)
 #new_linked_list.append(20)
-new_linked_list.append(30)
+#new_linked_list.append(30)
+#new_linked_list.append(40)
+new_linked_list.append(60)
 print(new_linked_list)
-print(new_linked_list.popLast())
+new_linked_list.delete()
+print(new_linked_list)
