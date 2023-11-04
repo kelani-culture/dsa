@@ -45,6 +45,8 @@ class LinkedList:
         while curr:
             if curr.value in seen:
                 prev.next = curr.next
+                #  reduce length
+                self.length -= 1
             else:
                 seen.add(curr.value)
                 prev = curr
