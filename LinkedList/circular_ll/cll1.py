@@ -151,10 +151,10 @@ class CSLinkedList:
             prev = self.head
             while prev.next is not self.tail:
                 prev = prev.next
-            
-            self.tail.next = None
-            self.tail = prev
+ 
             self.tail.next = self.head
+            self.tail = prev
+            pop_last.next = None
         return pop_last
 
     def __str__(self):
