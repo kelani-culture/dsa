@@ -150,12 +150,40 @@ class CSLinkedList:
         else:
             prev = self.head
             while prev.next is not self.tail:
-                prev = prev.next
- 
-            self.tail.next = self.head
+                prev = prev.next 
             self.tail = prev
+            self.tail.next = self.head
             pop_last.next = None
         return pop_last
+    
+    def remove(self, idx):
+        if self.head is None:
+            return None
+        
+        if idx < 0 or idx >= self.length:
+            return None
+        if idx == 0:
+            self.length -= 1
+            return self.popFirst()
+            
+        elif idx == self.length -1:
+            self.length -=1
+            return self.popLast()
+        else:
+            prev = self.head
+            for _ in range(idx-1):
+                prev = prev.next
+            temp = prev.next
+            prev.next = prev.next.next
+            #prev.next = None
+            self.length -= 1
+            return temp
+ 
+    def delete(self):
+        self.tail.next = None
+        self.head = None
+        self.tail = None
+        self.length = 0
 
     def __str__(self):
         circle = self.head
@@ -182,5 +210,7 @@ print(csl)
 # print(csl.get(2))
 # csl.set(5, 1000)
 #print(csl.popFirst())
-csl.popLast()
+#csl.popLast()
+#csl.remove(4)
+csl.delete()
 print(csl)
