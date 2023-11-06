@@ -180,6 +180,8 @@ class CSLinkedList:
             return temp
  
     def delete(self):
+        if self.head is None:
+            return
         self.tail.next = None
         self.head = None
         self.tail = None
