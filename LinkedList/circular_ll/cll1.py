@@ -102,7 +102,7 @@ class CSLinkedList:
         get element in a linked list
         """
         if idx < -1 or idx > self.length:
-            return -1
+            return None
         if self.head is None:
             return None
         
@@ -111,8 +111,52 @@ class CSLinkedList:
             current = current.next
         return current
     
-    def set():
-        pass
+    def set(self, index, value):
+        # update a value in a linked list
+        if self.head is None:
+            return None
+        
+        node = self.get(index)
+        if node:
+            node.value = value
+        return self.head
+    
+    def popFirst(self):
+        if self.head is None:
+            return None
+        
+        pop_head = self.head
+        if self.head.next is self.head:
+            self.head.next = None
+            self.head = None
+            self.tail = None
+
+        else:
+            self.head = self.head.next
+            self.tail.next = self.head
+            pop_head.next = None
+        self.length -= 1
+        return pop_head
+    
+    def popLast(self):
+        if self.head is None:
+            return None
+        pop_last = self.tail
+        if self.head.next is self.head:
+            self.head.next = None
+            self.head = None
+            self.tail = None
+            
+        else:
+            prev = self.head
+            while prev.next is not self.tail:
+                prev = prev.next
+            
+            self.tail.next = None
+            self.tail = prev
+            self.tail.next = self.head
+        return pop_last
+
     def __str__(self):
         circle = self.head
         res = ""
@@ -135,4 +179,8 @@ csl.insert(2, 0)
 csl.insert(3)
 print(csl)
 #print(csl.search(5))
-print(csl.get(2))
+# print(csl.get(2))
+# csl.set(5, 1000)
+#print(csl.popFirst())
+csl.popLast()
+print(csl)
