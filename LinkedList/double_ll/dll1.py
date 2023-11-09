@@ -1,3 +1,6 @@
+"""
+creating and working with doubly linked list
+"""
 class Node:
     def __init__(self, value):
         self.value = value
@@ -7,6 +10,7 @@ class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.length = 0
     
     def __iter__(self):
         node = self.head
@@ -21,10 +25,11 @@ class DoublyLinkedList:
         node.next = None
         self.head = node
         self.tail = node
-        return "The DLl CREATED SUCCESSFULLY"
+        self.length += 1
     
     
     def prepend(self, value):
+        # add a node to the beginning of a linked list
         new_node = Node(value)
         if self.head is None:
             self.createDLL(value)
@@ -33,11 +38,48 @@ class DoublyLinkedList:
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
+        
+        self.length += 1
+            
+    def append(self, value):
+        # addd a node to the ending of a linked list
+        new_node = Node(value)
+        if self.head is None:
+            self.createDLL(value)
+        
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+        
+        self.length += 1
+    def insert(self, value, index):
+       # insert at any given location 
+        if index > self.length:
+            print("Index out of range")
+            exit()
 
-
+        new_node = Node(value)
+        if index == 0:
+            self.prepend(value)
+        
+        elif index == self.length - 1:
+            self.append(value)
+        
+        else:
+            temp = self.head
+            for _ in range(index):
+                temp = temp.next
+            new_node.next = temp
+            new_node.prev = temp.prev
+            temp.prev.next = new_node
+            temp.prev = new_node
+        self.length += 1
+            
 doubly = DoublyLinkedList()
-doubly.createDLL(5)
+# doubly.createDLL(5)
 doubly.prepend(6)
 doubly.prepend(2)
-print(doubly.tail.value)
+doubly.append(3)
+doubly.insert(1, 1)
 print([node.value for node in doubly])
