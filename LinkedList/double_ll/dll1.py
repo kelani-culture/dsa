@@ -90,7 +90,7 @@ class DoublyLinkedList:
         if self.head is None:
             print("linked list is empty")
             exit()
-        
+ 
         temp = self.tail
         index = self.length
         while temp:
