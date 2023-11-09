@@ -6,6 +6,8 @@ class Node:
         self.value = value
         self.next = None
         self.prev = None
+    
+    
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
@@ -87,6 +89,7 @@ class DoublyLinkedList:
             temp = temp.next
             
     def reverse_traverse(self):
+        # traverse the list in reverse order
         if self.head is None:
             print("linked list is empty")
             exit()
@@ -97,6 +100,69 @@ class DoublyLinkedList:
             index -= 1
             print(f"{index }: {temp.value}")
             temp = temp.prev
+            
+        
+    def search(self, value):
+        if self.head is None:
+            return None
+        
+        temp = self.head
+        while temp:
+            if temp.value == value:
+                return temp.value
+            temp= temp.next
+            
+        return "Node does not exist"
+    
+    def popFirst(self):
+        # delete first value in a doubly linked list
+        if self.head is None:
+            return None
+
+        pophead = self.head
+        if self.head.next is None:
+            self.head = None
+            self.tail = None
+        
+        else:
+            self.head = self.head.next
+            self.head.prev = None 
+        self.length -= 1
+        return pophead.value
+    
+    def pop(self):
+        if self.head is None:
+            print("linked list is empty")
+            exit()
+        
+        poplast = self.tail
+        if self.head.next is None:
+            self.head = None
+            self.tail = None
+        
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            
+        self.length -= 1
+        return poplast.value
+
+    def remove_node(self, index):
+        if self.head is None:
+            return "empty linked list"
+        
+        if index == 0:
+          return self.popFirst()
+            
+        else:
+            temp = self.head
+            for _ in range(index):
+                temp = temp.next
+            temp.next.prev = temp.prev
+            temp.prev.next = temp.next
+
+        self.length -= 1
+        return temp.value
 
 doubly = DoublyLinkedList()
 doubly.createDLL(5)
@@ -104,5 +170,12 @@ doubly.prepend(6)
 doubly.prepend(2)
 doubly.append(3)
 doubly.insert(1, 1)
-doubly.reverse_traverse()
+# doubly.reverse_traverse()
+
+print([node.value for node in doubly])
+print(doubly.popFirst())
+print([node.value for node in doubly])
+print(doubly.remove_node(1))
+print([node.value for node in doubly])
+print(doubly.pop())
 print([node.value for node in doubly])
