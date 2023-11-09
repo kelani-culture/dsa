@@ -85,7 +85,18 @@ class DoublyLinkedList:
         while temp:
             print(temp.value)
             temp = temp.next
-
+            
+    def reverse_traverse(self):
+        if self.head is None:
+            print("linked list is empty")
+            exit()
+        
+        temp = self.tail
+        index = self.length
+        while temp:
+            index -= 1
+            print(f"{index }: {temp.value}")
+            temp = temp.prev
 
 doubly = DoublyLinkedList()
 doubly.createDLL(5)
@@ -93,5 +104,5 @@ doubly.prepend(6)
 doubly.prepend(2)
 doubly.append(3)
 doubly.insert(1, 1)
-doubly.traverse()
+doubly.reverse_traverse()
 print([node.value for node in doubly])
