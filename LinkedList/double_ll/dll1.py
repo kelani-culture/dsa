@@ -66,8 +66,7 @@ class DoublyLinkedList:
             self.prepend(value)
         
         elif index == self.length - 1:
-            self.append(value)
-        
+            self.append(value) 
         else:
             temp = self.head
             for _ in range(index):
@@ -134,12 +133,11 @@ class DoublyLinkedList:
         if self.head is None:
             print("linked list is empty")
             exit()
-        
+
         poplast = self.tail
         if self.head.next is None:
             self.head = None
-            self.tail = None
-        
+            self.tail = None 
         else:
             self.tail = self.tail.prev
             self.tail.next = None
@@ -149,10 +147,14 @@ class DoublyLinkedList:
 
     def remove_node(self, index):
         if self.head is None:
-            return "empty linked list"
-        
+            print("empty linked list")
+            exit()
+
         if index == 0:
           return self.popFirst()
+
+        elif index == self.length - 1:
+            return self.pop()
             
         else:
             temp = self.head
@@ -160,9 +162,22 @@ class DoublyLinkedList:
                 temp = temp.next
             temp.next.prev = temp.prev
             temp.prev.next = temp.next
-
         self.length -= 1
         return temp.value
+
+    
+    def delete_all(self):
+        if self.head is None:
+            print("empty linked list")
+            exit()
+       
+        temp = self.head
+        while temp:
+            temp.prev = None
+            temp =  temp.next
+            
+        self.head = None
+        self.tail = None
 
 doubly = DoublyLinkedList()
 doubly.createDLL(5)
@@ -175,7 +190,10 @@ doubly.insert(1, 1)
 print([node.value for node in doubly])
 print(doubly.popFirst())
 print([node.value for node in doubly])
-print(doubly.remove_node(1))
+print(doubly.remove_node(3))
 print([node.value for node in doubly])
 print(doubly.pop())
 print([node.value for node in doubly])
+print(doubly.delete_all())
+print([node.value for node in doubly])
+
