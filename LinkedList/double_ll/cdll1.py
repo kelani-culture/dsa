@@ -116,6 +116,15 @@ class CircularDoublyLinkedList:
             new_node.prev = temp_node.prev
             temp_node.prev.next = new_node
             temp_node.prev = new_node
+            
+    
+    def traversal(self):
+        curr = self.head
+        while curr:
+            print(curr.value) 
+            curr =  curr.next
+            if curr is self.head:
+                break
 
 cdll = CircularDoublyLinkedList()
 # cdll.prepend(1)
@@ -125,4 +134,5 @@ cdll.append(2)
 cdll.append(3)
 cdll.append(4)
 cdll.insert(5, 3)
+# cdll.traversal()
 print([node.value for node in cdll])
