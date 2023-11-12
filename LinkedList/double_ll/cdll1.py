@@ -77,6 +77,7 @@ class CircularDoublyLinkedList:
             self.head.prev = self.tail
             self.tail.next = self.head
             #self.tail.prev = self.head
+        self.lenght += 1
     
     def append(self, value):
         new_node = Node(value)
@@ -89,6 +90,32 @@ class CircularDoublyLinkedList:
             self.tail = new_node
             self.tail.next = self.head
             self.head.prev = self.tail
+        self.length += 1
+
+    def insert(self, value, index):        
+        if index < 0 or index > self.length:
+            print("Index out of range")
+            return
+        
+        
+        new_node = Node(value)
+        if index == 0:
+            if self.head is None:
+                self.CreateCdll(value)
+            else:
+                self.prepend(value)
+
+        if index == self.length:
+            self.append(value)
+            
+        else:
+            temp_node = self.head
+            for _ in range(index):
+                temp_node = temp_node.next
+            new_node.next = temp_node
+            new_node.prev = temp_node.prev
+            temp_node.prev.next = new_node
+            temp_node.prev = new_node
 
 cdll = CircularDoublyLinkedList()
 # cdll.prepend(1)
@@ -97,4 +124,5 @@ cdll = CircularDoublyLinkedList()
 cdll.append(2)
 cdll.append(3)
 cdll.append(4)
+cdll.insert(5, 3)
 print([node.value for node in cdll])
