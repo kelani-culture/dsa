@@ -77,10 +77,24 @@ class CircularDoublyLinkedList:
             self.head.prev = self.tail
             self.tail.next = self.head
             #self.tail.prev = self.head
+    
+    def append(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.CreateCdll(value)
+        
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+            self.tail.next = self.head
+            self.head.prev = self.tail
 
 cdll = CircularDoublyLinkedList()
-cdll.prepend(1)
-cdll.prepend(2)
-cdll.prepend(3)
-print(cdll.head.value)
+# cdll.prepend(1)
+# cdll.prepend(3)
+# cdll.prepend(4)
+cdll.append(2)
+cdll.append(3)
+cdll.append(4)
 print([node.value for node in cdll])
