@@ -188,7 +188,21 @@ class CircularDoublyLinkedList:
             popNode.prev = None
             self.length -= 1
             return popNode
-            
+    
+    def delete(self):
+        # delete an entire doubly linked lst
+        if self.head is None:
+            return None
+
+        temp = self.head
+        while (temp):
+            temp.prev = None
+            temp = temp.next
+            if temp == self.head:
+                self.tail.next = None
+                break 
+        self.head = None
+        self.tail = None
 cdll = CircularDoublyLinkedList()
 # cdll.prepend(1)
 # cdll.prepend(3)
@@ -199,6 +213,6 @@ cdll.append(4)
 cdll.insert(5, 3)
 # cdll.traversal()
 print([node.value for node in cdll])
-cdll.delete_node(3)
+cdll.delete()
 print([node.value for node in cdll])
 #print(cdll.search(2))
