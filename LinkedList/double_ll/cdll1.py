@@ -140,9 +140,15 @@ class CircularDoublyLinkedList:
                 break;
         return False
     
-    def delete_node(self, index):
+    def delete_node(self, index=0):
+        # delete a node by index 
+        # if no index is given delete the first node by default
+        
         if self.head is None:
             return None
+        
+        if index >= self.length:
+            return "Index out of bound";
         
         if index == 0:
             if self.length == 1:
@@ -150,6 +156,7 @@ class CircularDoublyLinkedList:
                 self.head.prev = Noe
                 self.head = None
                 self.tail = None
+                self.length -= 1
             else:
                 popNode = self.head
                 self.head = self.head.next
@@ -157,6 +164,7 @@ class CircularDoublyLinkedList:
                 self.tail.next = self.head
                 popNode.next = None
                 popNode.prev = None
+                self.length -= 1
                 return popNode.value
 
         elif index == self.length - 1:
@@ -165,6 +173,7 @@ class CircularDoublyLinkedList:
             self.tail.next = self.head
             popNode.next = None
             popNode.prev = None
+            self.length -= 1
             return popNode.value
         
         else:
@@ -177,6 +186,7 @@ class CircularDoublyLinkedList:
             temp.next.prev = temp.prev
             popNode.next = None
             popNode.prev = None
+            self.length -= 1
             return popNode
             
 cdll = CircularDoublyLinkedList()
@@ -189,6 +199,6 @@ cdll.append(4)
 cdll.insert(5, 3)
 # cdll.traversal()
 print([node.value for node in cdll])
-cdll.delete_node(1)
+cdll.delete_node(3)
 print([node.value for node in cdll])
 #print(cdll.search(2))
