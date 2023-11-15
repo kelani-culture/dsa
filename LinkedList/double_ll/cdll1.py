@@ -117,7 +117,6 @@ class CircularDoublyLinkedList:
             temp_node.prev.next = new_node
             temp_node.prev = new_node
             
-    
     def traversal(self):
         curr = self.head
         while curr:
@@ -126,6 +125,60 @@ class CircularDoublyLinkedList:
             if curr is self.head:
                 break
 
+    def search(self, val):
+        if self.head is None:
+            return None
+        
+        elif self.head.next is None:
+            return self
+        temp = self.head
+        while(temp):
+            if temp.value == val:
+                return True
+            temp = temp.next
+            if temp == self.head:
+                break;
+        return False
+    
+    def delete_node(self, index):
+        if self.head is None:
+            return None
+        
+        if index == 0:
+            if self.length == 1:
+                self.head.next = None
+                self.head.prev = Noe
+                self.head = None
+                self.tail = None
+            else:
+                popNode = self.head
+                self.head = self.head.next
+                self.head.prev = self.tail
+                self.tail.next = self.head
+                popNode.next = None
+                popNode.prev = None
+                return popNode.value
+
+        elif index == self.length - 1:
+            popNode = self.tail
+            self.tail = self.tail.prev
+            self.tail.next = self.head
+            popNode.next = None
+            popNode.prev = None
+            return popNode.value
+        
+        else:
+            temp = self.head
+            for _ in range(index):
+                temp = temp.next
+
+            popNode = temp
+            temp.prev.next = temp.next
+            temp.next.prev = temp.prev
+            popNode.next = None
+            popNode.prev = None
+            return popNode
+            
 cdll = CircularDoublyLinkedList()
 # cdll.prepend(1)
 # cdll.prepend(3)
@@ -136,3 +189,6 @@ cdll.append(4)
 cdll.insert(5, 3)
 # cdll.traversal()
 print([node.value for node in cdll])
+cdll.delete_node(1)
+print([node.value for node in cdll])
+#print(cdll.search(2))
