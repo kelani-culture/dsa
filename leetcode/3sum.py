@@ -40,15 +40,10 @@ class Solution:
                     right -=  1
 
                 if curr_sum == 0:
-                   result.append([nums[ind], nums[left], nums[right]])
-                
+                   result.append([nums[ind], nums[left], nums[right]]) 
                 left += 1
                 right -= 1
-                # if curr_sum < 0:
-                #     left += 1
-                # else:
-                #     right -= 1
-        print(result)
+        return result
 
 nums = [-1,0,1,2,-1,-4]
 nums = [0, 0, 0]
