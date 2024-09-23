@@ -137,7 +137,7 @@ class CircularDoublyLinkedList:
                 return True
             temp = temp.next
             if temp == self.head:
-                break;
+                break
         return False
     
     def delete_node(self, index=0):
@@ -148,12 +148,12 @@ class CircularDoublyLinkedList:
             return None
         
         if index >= self.length:
-            return "Index out of bound";
+            return "Index out of bound"
         
         if index == 0:
             if self.length == 1:
                 self.head.next = None
-                self.head.prev = Noe
+                self.head.prev = None
                 self.head = None
                 self.tail = None
                 self.length -= 1

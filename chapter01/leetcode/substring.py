@@ -1,3 +1,4 @@
+from typing import Dict
 class Solution(object):
     def lengthOfLongestSubstring(self, s) -> int:
         """
@@ -6,7 +7,7 @@ class Solution(object):
         """
         longest_so_far = ""
         current_longest = ""
-        dup = {}
+        dup: Dict[str, int] = {}
         for ind, let in enumerate(s):
             if let in dup and let in current_longest:
                current_longest = s[dup[let]+1:ind+1] 
