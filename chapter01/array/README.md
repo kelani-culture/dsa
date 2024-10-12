@@ -1,1 +1,0 @@
-learning python array module
